@@ -1,0 +1,23 @@
+version: '3.1'
+services:
+  main-backend:
+    image: 'nikitkamzgb/main-pic-iso'
+    container_name: 'main-pic-manager-container'
+    depends_on:
+      - main-db
+    environment:
+      - SERVER_PORT=8005
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://main-db:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=qwe
+    ports:
+      - 8009:8005
+    
+  main-db:
+    image: 'postgres'
+    container_name: 'main-pic-db' 
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=qwe
+    ports:
+      - 2345:5432
